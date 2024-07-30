@@ -1,11 +1,22 @@
 import inquirer from 'inquirer';
 import fs from 'fs';
+import generateMarkdown from './generateMarkdown.js';
 
 // Array of questions for user input
 const questions = [
     {
         type: 'input',
-        message: 'Description',
+        message: 'Project Title?',
+        name: 'title',
+    },
+    {
+        type: 'input',
+        message: 'Github Account?',
+        name: 'github',
+    },
+    {
+        type: 'input',
+        message: 'Description of Project?',
         name: 'description',
     },
     {
@@ -24,9 +35,10 @@ const questions = [
         name: 'usage',
     },
     {
-        type: 'input',
+        type: 'list',
         message: 'License',
         name: 'license',
+        choices: ['MIT', 'Apache 2.0', 'GPL 3.0', 'None'],
     },
     {
         type: 'input',
@@ -40,6 +52,11 @@ const questions = [
     },
     {
         type: 'input',
+        message: 'Contact Email?',
+        name: 'email',
+    },
+    {
+        type: 'input',
         message: 'Questions',
         name: 'questions',
     },
@@ -47,27 +64,28 @@ const questions = [
 
 // Function to write README file
 function writeToFile(fileName, data) {
+    console.log(`Writing to file: ${fileName}`);
     fs.writeFile(fileName, data, (err) => {
         if (err) {
-            console.error(err);
+            console.error('Error writing file:', err);
         } else {
             console.log('Success! README file has been generated.');
         }
     });
-}
+};
 
 // Function to initialize app
 function init() {
     inquirer.prompt(questions)
         .then((answers) => {
-            const data = `# Project Title\n\n## Description\n${answers.description}\n\n## Table of Contents\n${answers.tableOfContents}\n\n## Installation\n${answers.installation}\n\n## Usage\n${answers.usage}\n\n## License\n${answers.license}\n\n## Contributing\n${answers.contributing}\n\n## Tests\n${answers.tests}\n\n## Questions\n${answers.questions}\n`;
+            const markdown = generateMarkdown(answers);
             const fileName = 'README.md';
-            writeToFile(fileName, data);
+            writeToFile(fileName, markdown);
         })
         .catch((error) => {
             console.error('Error prompting user:', error);
         });
-}
+};
 
 // Function call to initialize app
 init();

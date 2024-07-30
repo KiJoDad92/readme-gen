@@ -1,7 +1,6 @@
 {
   "name": "static-site",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -10,6 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "inquirer": "^10.1.2"
-  }
+    "fs": "^0.0.1-security",
+    "inquirer": "^10.1.5"
+  },
+  "keywords": [],
+  "description": ""
 }
