@@ -1,39 +1,30 @@
-# sdf
-
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+# Readme Generator
 
 ## Description
-
-sdf
+To make creating a readme file easier on the user. being able to have a prompt come up that will complie the data for you for ease of use.
 
 ## Table of Contents
+lincese, descriptions, usage, installation, questions, tests
 
-sdf
 
 ## Installation
-
-sdf
+npm i, npm init -y, node index.js
 
 ## Usage
-
-sdf
+for every project
 
 ## License
 
-This project is licensed under the MIT license. See the [MIT License](https://opensource.org/licenses/MIT) for details.
-
+This project is licensed under the [MIT](https://opensource.org/licenses/MIT) license. [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Contributing
-
-sdfsdf
+google, xpert, bootcamp activities
 
 ## Tests
-
-sd
+no tests
 
 ## Questions
+If you have any questions, please reach out to [ibanez_baby07@yahoo.com](mailto:ibanez_baby07@yahoo.com).
 
-For any questions, please contact me at [sdf](mailto:sdf).
-
-You can also find more of my work on my [GitHub profile](https://github.com/sdf).
-
+## Additional Information
+get in touch with me at my email or github for any questions

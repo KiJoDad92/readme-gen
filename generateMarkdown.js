@@ -1,86 +1,78 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+// Function to render the license badge
 function renderLicenseBadge(license) {
-  switch (license) {
-      case 'MIT':
-          return '![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)';
-      case 'Apache 2.0':
-          return '![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)';
-      case 'GPL 3.0':
-          return '![License: GPL 3.0](https://img.shields.io/badge/License-GPL%203.0-blue.svg)';
-      default:
-          return '';
-  }
+    if (license === 'MIT') {
+      return '[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)';
+    } else if (license === 'Apache 2.0') {
+      return '[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)';
+    } else if (license === 'GPL 3.0') {
+      return '[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)';
+    } else {
+      return '';
+    }
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// Function to render the license link
 function renderLicenseLink(license) {
-  switch (license) {
-      case 'MIT':
-          return '[MIT License](https://opensource.org/licenses/MIT)';
-      case 'Apache 2.0':
-          return '[Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)';
-      case 'GPL 3.0':
-          return '[GPL 3.0 License](https://opensource.org/licenses/GPL-3.0)';
-      default:
-          return '';
-  }
+    if (license === 'MIT') {
+      return 'https://opensource.org/licenses/MIT';
+    } else if (license === 'Apache 2.0') {
+      return 'https://opensource.org/licenses/Apache-2.0';
+    } else if (license === 'GPL 3.0') {
+      return 'https://www.gnu.org/licenses/gpl-3.0';
+    } else {
+      return '';
+    }
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// Function to render the license section of README
 function renderLicenseSection(license) {
-  if (license === 'None') {
+  if (license) {
+      return `## License
+
+This project is licensed under the [${license}](${renderLicenseLink(license)}) license. ${renderLicenseBadge(license)}`;
+  } else {
       return '';
   }
-  return `## License
-
-This project is licensed under the ${license} license. See the [${license} License](https://opensource.org/licenses/${license.replace(/\s+/g, '-')}) for details.
-`;
-}
+};
 
 
-// TODO: Create a function to generate markdown for README
+// Function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}
+  const { title, description, tableOfContents, installation, usage, license, contributing, tests, email, questions } = data;
 
-${renderLicenseBadge(data.license)}
+  // Generate Table of Contents if it's provided
+  const tableOfContentsContent = tableOfContents ? `## Table of Contents\n${tableOfContents}\n` : '';
+
+  // Generate License section if license is provided
+  const licenseSection = renderLicenseSection(license);
+
+  return `# ${title}
 
 ## Description
+${description}
 
-${data.description}
-
-## Table of Contents
-
-${data.tableOfContents}
+${tableOfContentsContent}
 
 ## Installation
-
-${data.installation}
+${installation}
 
 ## Usage
+${usage}
 
-${data.usage}
-
-${renderLicenseSection(data.license)}
+${licenseSection}
 
 ## Contributing
-
-${data.contributing}
+${contributing}
 
 ## Tests
-
-${data.tests}
+${tests}
 
 ## Questions
+If you have any questions, please reach out to [${email}](mailto:${email}).
 
-For any questions, please contact me at [${data.email}](mailto:${data.email}).
-
-You can also find more of my work on my [GitHub profile](https://github.com/${data.github}).
-
+## Additional Information
+${questions}
 `;
-}
+};
 
 export default generateMarkdown;
-
